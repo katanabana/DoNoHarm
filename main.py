@@ -31,7 +31,7 @@ class LoginMenu(QWidget):
         self.login = QLineEdit()
         self.enter_button = QPushButton('Войти')
         self.captcha = Captcha()
-        self.error = Dialog(QLabel('Неверные данные'))
+        self.error = Dialog(self, QLabel('Неверные данные'))
 
         self.error.hide()
         self.captcha.button.clicked.connect(self.check_captcha)
@@ -43,6 +43,9 @@ class LoginMenu(QWidget):
         self.layout().addWidget(QLabel('Пароль:'))
         self.layout().addWidget(self.password)
         self.layout().addWidget(self.enter_button)
+
+        self.login.setText('chacking0')
+        self.password.setText('4tzqHdkqzo4')
 
     def get_user(self):
         password = self.password.text()

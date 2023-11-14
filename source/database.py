@@ -16,3 +16,8 @@ class DB:
     base.prepare(engine)
     tables = base.classes
 
+    @classmethod
+    def get(cls, table_name):
+        table = getattr(cls.tables, table_name)
+        return cls.get_session().scalars(select(table))
+
