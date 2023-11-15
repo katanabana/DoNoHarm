@@ -44,8 +44,17 @@ class LoginMenu(QWidget):
         self.layout().addWidget(self.password)
         self.layout().addWidget(self.enter_button)
 
-        self.login.setText('chacking0')
-        self.password.setText('4tzqHdkqzo4')
+        technician_password = '4tzqHdkqzo4'
+        technician_login = 'chacking0'
+
+        administrator_password = 'Cbmj3Yi'
+        administrator_login = 'srobken8'
+
+        bookkeeper_password = 'ukM0e6'
+        bookkeeper_login = 'nmably1'
+
+        self.login.setText(bookkeeper_login)
+        self.password.setText(bookkeeper_password)
 
     def get_user(self):
         password = self.password.text()

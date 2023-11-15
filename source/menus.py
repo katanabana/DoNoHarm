@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QHBoxLayout, QLabel
 
+from source.check import Check
 from source.order import Order
-from source.widgets import Dialog
+from source.widgets import Dialog, Table, EditTable, ScrollDialog
 
 
 def get_user_menu(user):
@@ -19,9 +20,9 @@ class Menu(QWidget):
         QVBoxLayout(self)
         self.layout().addLayout(header)
 
-    def add_service(self, name, widget):
+    def add_service(self, name, widget, dialog_type=Dialog):
         button = QPushButton(name)
-        button.clicked.connect(Dialog(self, widget).show)
+        button.clicked.connect(dialog_type(self, widget).show)
         self.layout().addWidget(button)
 
 
@@ -29,15 +30,16 @@ class Technician(Menu):
     def __init__(self, user):
         super().__init__(user)
         self.add_service('Формировать заказ', Order())
+        self.add_service('Редактировать клиента', EditTable('Client', 'Email', 'Phone'))
 
 
 class Bookkeeper(Menu):
     def __init__(self, user):
         super().__init__(user)
-        self.add_service('Формировать счет', QWidget())
+        self.add_service('Формировать счет', Check())
 
 
 class Administrator(Menu):
     def __init__(self, user):
         super().__init__(user)
-        self.add_service('Смотреть историю входа', QWidget())
+        self.add_service('Смотреть историю входа', Table('User'))
