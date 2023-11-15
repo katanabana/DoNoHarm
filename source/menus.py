@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QHBoxLayout, QLab
 
 from source.check import Check
 from source.order import Order
+from source.report import Report
 from source.widgets import Dialog, Table, EditTable, ScrollDialog
 
 
@@ -19,6 +20,7 @@ class Menu(QWidget):
         header.addWidget(QLabel(user.Name))
         QVBoxLayout(self)
         self.layout().addLayout(header)
+        self.add_service('Формировать отчет', Report())
 
     def add_service(self, name, widget, dialog_type=Dialog):
         button = QPushButton(name)
